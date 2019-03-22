@@ -64,7 +64,7 @@ router.post('/', descriptionLimiter, async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', descriptionLimiter, async (req, res) => {
   if (!req.body.project_id || !req.body.description || !req.body.notes ) {
     return res
       .status(400)
