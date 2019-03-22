@@ -26,13 +26,27 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    Middleware, Routing, Configuration through dotenv, deployment
+
 - [ ] Describe Middleware?
+
+    Express middleware is a series of callbacks that express passes each request through.  They can be chained via the
+    next parameter.  The term is often used to refer to functions you run before the request gets to your route, but
+    even your routes are middlewares.
 
 - [ ] Describe a Resource?
 
+    A resource is a noun or model your API deals with, typically through CRUD operations.  Each resource typically has
+    its own base route such as /api/people or /api/things, and you'd interact with these resources via specific HTTP
+    methods and urls.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    An API can return standard HTTP status codes to indicate how each request went.
+
 - [ ] How can we partition our application into sub-applications?
+
+    You do this via separating each resource into its own set of routes and its own DB interface.
 
 ## Project Setup
 
