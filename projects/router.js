@@ -61,9 +61,9 @@ router.get('/:id/actions', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    if (!req.body.user_id || !req.body.text) {
+    if (!req.body.name || !req.body.description) {
       return res.status(400).json({
-        errorMessage: 'Please provide a user_id and text value for project'
+        errorMessage: 'Please provide a name and description value for project'
       });
     }
     const project = await Projects.insert(req.body);
@@ -77,11 +77,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  if (!req.body.user_id || !req.body.text) {
+  if (!req.body.name || !req.body.description) {
     return res
       .status(400)
       .json({
-        errorMessage: 'Please provide user_id and text for the project.'
+        errorMessage: 'Please provide name and description for the project.'
       });
   }
   try {
