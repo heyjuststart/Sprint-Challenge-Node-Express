@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { fetchProjects, fetchProjectActions } from '../actions';
 import Project from '../components/Project';
 
-const ProjectList = styled.div``;
+const ProjectList = styled.div`
+  border: 1px solid black;
+  padding: 20px;
+`;
 
 const Projects = props => {
   useEffect(() => {

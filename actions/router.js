@@ -6,6 +6,14 @@ const router = express.Router();
 
 // handles urls beginning with /api/actions
 
+const descriptionLimiter = (req, res, next) => {
+  if (req.body.description && req.body.description.length > 128) {
+    return res.status(400).json({ message: 'Discription length should be shorter than 128 characters' });
+  }
+
+  next();
+};
+
 router.get('/', async (req, res) => {
   try {
     const actions = await Actions.get();
@@ -39,11 +47,11 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', descriptionLimiter, async (req, res) => {
   try {
-    if (!req.body.project_id || !req.body.description) {
+    if (!req.body.project_id || !req.body.description || !req.body.notes) {
       return res.status(400).json({
-        errorMessage: 'Please provide a project_id and description value for action'
+        errorMessage: 'Please provide a project_id, notes, and description value for action'
       });
     }
     const action = await Actions.insert(req.body);
@@ -57,11 +65,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  if (!req.body.project_id || !req.body.description) {
+  if (!req.body.project_id || !req.body.description || !req.body.notes ) {
     return res
       .status(400)
       .json({
-        errorMessage: 'Please provide project_id and description for the action.'
+        errorMessage: 'Please provide project_id, description, notes for the action.'
       });
   }
   try {
